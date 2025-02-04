@@ -6,50 +6,9 @@ var vm = new Vue({
     methods: {
         Listar() {
             this.personajes = [];
-            // $("#table_personajes").DataTable().clear().destroy();
-            if ($.fn.dataTable.isDataTable("#table_personajes")) {
-                // $('#table_ordenes').dataTable().fnClearTable();
-                var tabla = $("#table_personajes").DataTable();
-                tabla.destroy();
-            }
-            vue_global.ajax_peticion("Listarpersonajes", null, [
+            vue_global.ajax_peticion("api/rickandmorty/characters", null, [
                 (respuesta) => {
-                    this.personajes = respuesta.personajes;
-                    this.roles = respuesta.roles;
-                    this.zonas = respuesta.zonas;
-                    this.cargos = respuesta.cargos;
-                    this.sucursales = respuesta.sucursales;
-                    this.tipo_documentos = respuesta.tipo_documentos;
-                    this.categorias = respuesta.categorias;
-                    this.empresas_sistemas = respuesta.empresas_sistemas;
-                    this.Tipouser = respuesta.Tipouser;
-                    this.$nextTick(() => {
-                        $("#table_personajes").css("visibility", "visible");
-                        $("#table_personajes").dataTable({
-                            destroy: true,
-                            language: {
-                                decimal: "",
-                                emptyTable: "No hay información",
-                                info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                                infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
-                                infoFiltered:
-                                    "(Filtrado de _MAX_ total entradas)",
-                                infoPostFix: "",
-                                thousands: ",",
-                                lengthMenu: "Mostrar _MENU_ Entradas",
-                                loadingRecords: "Cargando...",
-                                processing: "Procesando...",
-                                search: "Buscar:",
-                                zeroRecords: "Sin resultados encontrados",
-                                paginate: {
-                                    first: "Primero",
-                                    last: "Ultimo",
-                                    next: "Siguiente",
-                                    previous: "Anterior",
-                                },
-                            },
-                        });
-                    });
+                    console.log(respuesta);
                 },
             ]);
         },
